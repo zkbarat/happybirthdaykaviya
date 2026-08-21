@@ -1,19 +1,19 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GiftInput from "./GiftInput";
 import GiftSubmitButton from "./GiftSubmitButton";
-import MovingNoGiftButton from "./MovingNoGiftButton";
 import { sendGiftRequest } from "../api";
 import { bigPop } from "./confetti";
 
-type Status = "idle" | "sending" | "success" | "caught";
+type Status = "idle" | "sending" | "success";
 
 export default function GiftPage({ onBack }: { onBack?: () => void }) {
   const [gift, setGift] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [dummyClicked, setDummyClicked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = async () => {
@@ -58,17 +58,24 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
     }
   };
 
-  const handleCaught = () => {
-    setStatus("caught");
+  // The "No Gift Needed" button is a dummy — clicking it shows a popup and
+  // then the button disappears. The popup auto-dismisses after 15 seconds.
+  const handleDummyClick = () => {
+    setDummyClicked(true);
+    setShowPopup(true);
   };
+
+  useEffect(() => {
+    if (!showPopup) return;
+    const t = setTimeout(() => setShowPopup(false), 15000);
+    return () => clearTimeout(t);
+  }, [showPopup]);
 
   return (
     <div className="min-h-screen-safe safe-top safe-bottom relative flex w-full flex-col items-center justify-center px-5 py-14">
       <AnimatePresence mode="wait">
         {status === "success" ? (
           <SuccessView key="success" note={note} />
-        ) : status === "caught" ? (
-          <CaughtView key="caught" />
         ) : (
           <motion.div
             key="form"
@@ -105,10 +112,7 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
               Ippo sollu di... Enna gift venum unakku? 👀🎁
             </motion.p>
 
-            <div
-              ref={cardRef}
-              className="mt-8 rounded-[2rem] bg-white/40 p-5 shadow-soft ring-1 ring-white/60 backdrop-blur-md sm:p-6"
-            >
+            <div className="mt-8 rounded-[2rem] bg-white/40 p-5 shadow-soft ring-1 ring-white/60 backdrop-blur-md sm:p-6">
               <GiftInput
                 ref={inputRef}
                 value={gift}
@@ -139,13 +143,61 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
                     loading={status === "sending"}
                   />
                 </div>
-                {/* Sits still right next to Submit — it only starts running
-                    away once she actually taps it. */}
-                {(status === "idle" || status === "sending") && (
-                  <MovingNoGiftButton avoidRef={cardRef} onCaught={handleCaught} />
-                )}
+                {/* Dummy button: click shows a popup, then it disappears. */}
+                <AnimatePresence>
+                  {!dummyClicked && (
+                    <motion.button
+                      type="button"
+                      onClick={handleDummyClick}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      whileTap={{ scale: 0.96 }}
+                      className="w-full whitespace-nowrap rounded-full border border-rose-soft bg-white/85 px-6 py-4 text-base font-semibold text-rose-deep shadow-soft backdrop-blur transition-colors hover:bg-white sm:w-auto"
+                    >
+                      No Gift Needed 😌
+                    </motion.button>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Dummy-button popup — auto-dismisses after 15s. */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            key="dummy-popup"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-6"
+          >
+            <div
+              className="absolute inset-0 bg-rose-deep/20 backdrop-blur-sm"
+              onClick={() => setShowPopup(false)}
+            />
+            <motion.div
+              initial={{ scale: 0.8, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 18 }}
+              className="relative z-10 w-full max-w-sm rounded-3xl bg-white/90 p-6 text-center shadow-glow ring-1 ring-rose-soft backdrop-blur"
+            >
+              <div className="text-5xl">😜</div>
+              <p className="mt-3 text-lg font-bold text-rose-deep">
+                Athu dummy button di 😜
+              </p>
+              <p className="mt-2 text-base font-medium text-rose">
+                Adha mooditu, unakku enna venum nu sollu di ❤️
+              </p>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="mt-5 rounded-full bg-gradient-to-r from-rose-deep via-rose to-rose-soft px-7 py-2.5 text-base font-bold text-white shadow-glow"
+              >
+                Sari 👍
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -178,26 +230,6 @@ function SuccessView({ note }: { note: string | null }) {
       </p>
       {note && <p className="mt-3 text-sm text-rose">{note}</p>}
       <p className="mt-6 text-2xl">🥳🎂✨</p>
-    </motion.div>
-  );
-}
-
-function CaughtView() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ type: "spring", stiffness: 180, damping: 16 }}
-      className="max-w-lg text-center"
-    >
-      <div className="mb-4 text-7xl">😭</div>
-      <h2 className="font-display text-3xl font-bold text-rose-deep sm:text-4xl">
-        Seri po... Fineee 😭
-      </h2>
-      <p className="mt-4 text-lg font-medium text-rose sm:text-xl">
-        Aana naan unakku ethaavadhu vaangi tharuven ❤️
-      </p>
     </motion.div>
   );
 }
