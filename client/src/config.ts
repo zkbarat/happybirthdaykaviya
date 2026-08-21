@@ -13,100 +13,100 @@ export const config = {
   // Her name — shows up in the big heading: "Happy Birthday, <NAME> ❤️"
   bestFriendName: "Kaviya",
 
-  // Optional background music.
-  // Put an .mp3 file in client/public/ and set the filename here,
-  // e.g. "birthday-song.mp3". Leave "" to hide the music button.
+  // Optional background music file (put an .mp3 in client/public/).
+  // Leave "" to use the built-in synthesized "Happy Birthday" tune instead.
   musicFile: "",
 
+  // Built-in Happy Birthday music (synthesized, no file needed) + a spoken
+  // "Happy Birthday <name>!" the first time it starts.
+  birthdayMusic: true,
+
   // The API endpoint that sends the gift request to you.
-  // Leave as "/api/gift-request" — the frontend proxies to your backend.
   giftApiEndpoint: "/api/gift-request",
 
   // 📮 GitHub Pages / no-server mode: paste your Formspree form endpoint here
   // (looks like "https://formspree.io/f/abcdwxyz"). When set, the gift request
   // is emailed to you via Formspree and NO backend is needed.
-  // Get one free at https://formspree.io (see README → "Host on GitHub Pages").
-  // Leave "" to use the Node backend (giftApiEndpoint) instead.
   formspreeEndpoint: "",
 
-  // ---- Home page (Tanglish) ----
+  // ---- Home page ----
   homeKicker: "unakaga oru chinna surprise 🎁",
-  homeCta: "Innum niraya irukku ❤️ →",
+  homeCta: "There's more ❤️ →",
 
   // Birthday wishes shown one-by-one on the Home page (Tanglish).
   wishes: [
-    "En life la romba special aana oruthiku... Happy Birthday da ❤️",
+    "En life la romba special aana oruthiku... Happy Birthday di ❤️",
     "Un smile eppovum ipdiye azhaga irukanum ✨",
     "Indha varusham un ella kanavum nanavaaganum 💕",
-    "Ellame santhosham, love, success un kitta thediki varanum 🌸",
-    "Ipdiye siriccha, ipdiye enna kalaaicha, ipdiye iru da 😂❤️",
+    "Nalla doctor aaganum, nalla manushi ah eppovum iru di 🩺",
+    "Ipdiye siriccha, ipdiye enna kalaaicha, ipdiye iru di 😂❤️",
   ],
 
   // ---- The 8 pages (excluding Home). The 8th page is the Gift page. ----
   // These 7 are the story/message pages; the gift page comes after them.
   storyPages: [
     {
-      title: "Vaanga Birthday Girl! 🎉",
+      title: "Best Friend 🌸",
       lines: [
-        "Inniku unnoda sp..special naal da ❤️",
-        "Idhu unakaga naan panna oru chinna surprise 🥳",
-        "Ready ah? Adutha page ku vaa 👀",
+        "Kadaisi 4-5 months la dhan nee enakku nalla friend aana 😊",
+        "Aana ipdi oru nalla friend kedaichadhu enakku oru luck dhan di ❤️",
+        "Un maadhiri oru per kedaikardhu easy illa di 🌸",
       ],
-      cta: "Vaa da 👉",
+      cta: "Next →",
     },
     {
-      title: "Nee Romba Special 🌸",
+      title: "Happy 23! 🎂",
       lines: [
-        "Un smile ah paakumbodhu ellarukum santhosham 😊",
-        "Un kitta iruka andha positive vibe... adhu rare da 💫",
-        "Un maadhiri oru friend kedaikardhu periya luck ❤️",
+        "Inniku nee 23 aayiten di 🎉",
+        "Aana enakku nee innum oru chinna kozhandhai dhan 😜",
+        "Innum niraya dooram poganum di... miles more to go 🚀",
       ],
-      cta: "Adutha page 👉",
+      cta: "Next →",
     },
     {
-      title: "Namma Kadhai 📖",
+      title: "Take Care 🩺",
       lines: [
-        "Ethana sandai, ethana siripu... ellame nyabagam varudhu 😂",
-        "Andha 2AM talks, andha useless photos... epdi marakka mudiyum 🥹",
-        "Nee enakku best friend mattum illa, family maadhiri da 💖",
+        "Future la nee oru doctor aaga poriya di 👩‍⚕️",
+        "Ellarayum health ah paathuka solra nee dhan... 💊",
+        "Aana mudhalla un health ah nee nalla paathuko di ❤️",
       ],
-      cta: "Innum irukku 👉",
+      cta: "Next →",
     },
     {
-      title: "En Vaazhthukkal 🎂",
+      title: "Move On 💪",
       lines: [
-        "Un ella kanavum nanavaave nadakanum 🙏",
-        "Romba santhosama, healthy ah, tension illama iru 🌈",
-        "Nee deserve panra ellame un kitta varanum ❤️",
+        "Un future la oru nalla paiyan kandippa kedaipan di 🥰",
+        "Andha ex ah pathi innum nenichitu irukatha di 🙅‍♀️",
+        "Please move on... nee idhukellam periyava di ❤️",
       ],
-      cta: "Adutha onnu 👉",
+      cta: "Next →",
     },
     {
-      title: "Konjam Kalaaikalaam 😏",
+      title: "Work Hard 🌟",
       lines: [
-        "Ippo un age konjam koodiruchu... but kavala padadha 😂",
-        "Naan yaar kittayum sollala, secret safe 🤐",
-        "Aana cake full ah nee dhaan saapdanum, sharing kidaiyaadhu 🍰",
+        "Un life ah nee nalla vaazhu di 🌟",
+        "Appa amma ku nee dhan thaangu, avanga perumai nee di 🩺",
+        "So life la kashtapattu, hard work pannu di 💪",
       ],
-      cta: "Hehe adutha page 👉",
+      cta: "Next →",
     },
     {
-      title: "Nandri Da 🥰",
+      title: "Stay The Same 💖",
       lines: [
-        "Naan kashtapadumbodhu nee dhaan mudhalla therinja 🤗",
-        "Ella time la yum en side la irundhadhukku nandri ❤️",
-        "Un maadhiri friend kedaicha naan romba lucky 🍀",
+        "Ipo nee irukura maadhiri eppovum ipdiye iru di 😊",
+        "Konjam kooda maaratha di ❤️",
+        "Indha cute-um indha kindal-um ellame ipdiye venum 🥰",
       ],
-      cta: "Kadaisi ah onnu 👉",
+      cta: "Next →",
     },
     {
-      title: "Oru Chinna Vishayam 🎁",
+      title: "Happy Birthday Again! 🎉",
       lines: [
-        "Inniku un birthday, so oru gift kandippa venum 🎉",
-        "Adhukku naan ready... aana nee dhaan sollanum enna venumnu 👀",
-        "Adutha page la sollu, naan vaangi tharen (try pannuren 😂❤️)",
+        "Konjam late... but not the least di 😅",
+        "Once again, Happy Birthday Kaviya 🎂❤️",
+        "Indha varusham full ah blast pannu di 🥳",
       ],
-      cta: "Gift sollen 🎁",
+      cta: "Tell Me Your Gift 🎁",
     },
   ] as StoryPage[],
 };

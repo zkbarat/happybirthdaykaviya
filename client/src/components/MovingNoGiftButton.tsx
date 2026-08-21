@@ -2,15 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const LABELS = [
-  "Gift Onnum Venaam 😌",
-  "Sure ah? 👀",
-  "Nice try da 😂",
-  "Innoru vaati try pannu 😌",
-  "Mudiyaadhu 😂❤️",
-  "Nijama gift venaama? 🥺",
-  "Munna pudi paapom 🏃‍♀️💨",
-  "Nadakaadhu da 😌",
-  "Idhu fun ah irukku 😂",
+  "No Gift Needed 😌",
+  "Are you sure? 👀",
+  "Nice try 😂",
+  "Try again 😌",
+  "Absolutely not 😂❤️",
+  "You really don't want a gift? 🥺",
+  "Catch me first 🏃‍♀️💨",
+  "Not happening 😌",
+  "Okay this is fun 😂",
 ];
 
 type Pos = { x: number; y: number };

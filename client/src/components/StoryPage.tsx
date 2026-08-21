@@ -63,7 +63,7 @@ export default function StoryPage({ data, index, total, onNext, onBack }: Props)
           onClick={onBack}
           className="rounded-full border border-rose-soft bg-white/70 px-6 py-3 text-base font-semibold text-rose-deep shadow-soft backdrop-blur transition hover:bg-white"
         >
-          ← Pinnadi
+          ← Back
         </button>
         <motion.button
           onClick={onNext}
@@ -71,7 +71,7 @@ export default function StoryPage({ data, index, total, onNext, onBack }: Props)
           whileTap={{ scale: 0.95 }}
           className="animate-pulseGlow rounded-full bg-gradient-to-r from-rose-deep via-rose to-rose-soft px-8 py-3 text-base font-bold text-white shadow-glow sm:text-lg"
         >
-          {data.cta ?? "Adutha page 👉"}
+          {data.cta ?? "Next →"}
         </motion.button>
       </motion.div>
     </div>

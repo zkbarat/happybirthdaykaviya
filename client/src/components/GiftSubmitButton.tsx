@@ -16,7 +16,7 @@ export default function GiftSubmitButton({ onClick, loading }: Props) {
       whileTap={{ scale: loading ? 1 : 0.96 }}
       className="animate-pulseGlow w-full rounded-full bg-gradient-to-r from-rose-deep via-rose to-rose-soft px-6 py-4 text-lg font-bold text-white shadow-glow transition disabled:cursor-wait disabled:opacity-80"
     >
-      {loading ? "Anuppuren... 💫" : "En Gift Request Anuppu 🎁"}
+      {loading ? "Sending... 💫" : "Send My Gift Request 🎁"}
     </motion.button>
   );
 }

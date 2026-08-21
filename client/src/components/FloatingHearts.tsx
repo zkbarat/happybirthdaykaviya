@@ -1,6 +1,21 @@
 import { useMemo } from "react";
 
-const HEARTS = ["❤️", "💕", "💖", "🌸", "💗", "🎀"];
+// Mostly hearts/petals, with a few doctor touches sprinkled in for our
+// future MBBS doctor 🩺 — they show up here and there among the hearts.
+const HEARTS = [
+  "❤️",
+  "💕",
+  "💖",
+  "🌸",
+  "💗",
+  "🎀",
+  "❤️",
+  "💕",
+  "💖",
+  "🩺",
+  "💊",
+  "🩹",
+];
 
 type HeartConfig = {
   left: number;

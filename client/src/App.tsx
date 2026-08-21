@@ -7,6 +7,7 @@ import FloatingHearts from "./components/FloatingHearts";
 import Sparkles from "./components/Sparkles";
 import Balloons from "./components/Balloons";
 import MusicButton from "./components/MusicButton";
+import BirthdayMusic from "./components/BirthdayMusic";
 import { config } from "./config";
 
 const pageVariants = {
@@ -52,9 +53,11 @@ export default function App() {
       <FloatingHearts />
       <Balloons />
 
-      {config.musicFile && (
+      {config.musicFile ? (
         <MusicButton src={`${import.meta.env.BASE_URL}${config.musicFile}`} />
-      )}
+      ) : config.birthdayMusic ? (
+        <BirthdayMusic name={config.bestFriendName} />
+      ) : null}
 
       <div className="relative z-10">
         <AnimatePresence mode="wait">

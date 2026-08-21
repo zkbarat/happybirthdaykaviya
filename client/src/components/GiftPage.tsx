@@ -18,7 +18,7 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
 
   const handleSubmit = async () => {
     if (!gift.trim()) {
-      setError("Enna da... 'onnum venaam' nu sollaadha 😏 Un gift ah sollu!");
+      setError("Enna di... 'onnum venaam' nu sollaadha 😏 Un gift ah sollu di!");
       inputRef.current?.focus();
       return;
     }
@@ -63,7 +63,7 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
                   onClick={onBack}
                   className="rounded-full border border-rose-soft bg-white/70 px-6 py-2 text-sm font-semibold text-rose-deep shadow-soft backdrop-blur transition hover:bg-white"
                 >
-                  ← Pinnadi
+                  ← Back
                 </button>
               </div>
             )}
@@ -81,7 +81,7 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
               transition={{ delay: 0.35, duration: 0.5 }}
               className="mt-3 text-lg font-medium text-rose sm:text-xl"
             >
-              Ippo sollu... Enna gift venum unakku? 👀🎁
+              Ippo sollu di... Enna gift venum unakku? 👀🎁
             </motion.p>
 
             <div
