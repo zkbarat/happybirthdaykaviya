@@ -2,15 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const LABELS = [
-  "No Gift Needed 😌",
-  "Are you sure? 👀",
-  "Nice try 😂",
-  "Try again 😌",
-  "Absolutely not 😂❤️",
-  "You really don't want a gift? 🥺",
-  "Catch me first 🏃‍♀️💨",
-  "Not happening 😌",
-  "Okay this is fun 😂",
+  "Gift Onnum Venaam 😌",
+  "Sure ah? 👀",
+  "Nice try da 😂",
+  "Innoru vaati try pannu 😌",
+  "Mudiyaadhu 😂❤️",
+  "Nijama gift venaama? 🥺",
+  "Munna pudi paapom 🏃‍♀️💨",
+  "Nadakaadhu da 😌",
+  "Idhu fun ah irukku 😂",
 ];
 
 type Pos = { x: number; y: number };
@@ -101,8 +101,8 @@ export default function MovingNoGiftButton({ avoidRef, onCaught }: Props) {
     setLabelIndex((i) => (i + 1) % LABELS.length);
     setAttempts((a) => {
       const next = a + 1;
-      if (next === 4) setTeaser("Okay okay... I know you're trying to escape 😂❤️");
-      if (next === 8) setTeaser("You're really persistent huh 😭❤️");
+      if (next === 4) setTeaser("Seri seri... nee escape aaga try panra theriyudhu 😂❤️");
+      if (next === 8) setTeaser("Nee romba per sollura huh 😭❤️");
       return next;
     });
   }, [pickNewPosition]);

@@ -18,7 +18,7 @@ export default function BirthdayHome({ onNext }: { onNext: () => void }) {
         transition={{ duration: 0.6 }}
         className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-rose"
       >
-        a little surprise for you
+        {config.homeKicker}
       </motion.p>
 
       <motion.h1
@@ -53,7 +53,7 @@ export default function BirthdayHome({ onNext }: { onNext: () => void }) {
           whileTap={{ scale: 0.95 }}
           className="animate-pulseGlow rounded-full bg-gradient-to-r from-rose-deep via-rose to-rose-soft px-9 py-4 text-lg font-bold text-white shadow-glow"
         >
-          There's More ❤️ →
+          {config.homeCta}
         </motion.button>
       </motion.div>
     </div>

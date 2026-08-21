@@ -8,7 +8,7 @@ import { bigPop } from "./confetti";
 
 type Status = "idle" | "sending" | "success" | "caught";
 
-export default function GiftPage() {
+export default function GiftPage({ onBack }: { onBack?: () => void }) {
   const [gift, setGift] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +18,7 @@ export default function GiftPage() {
 
   const handleSubmit = async () => {
     if (!gift.trim()) {
-      setError("Come on... you can't say you don't want anything 😏 Tell me your gift!");
+      setError("Enna da... 'onnum venaam' nu sollaadha 😏 Un gift ah sollu!");
       inputRef.current?.focus();
       return;
     }
@@ -33,7 +33,7 @@ export default function GiftPage() {
       }
     } catch {
       setStatus("idle");
-      setError("Hmm, my phone didn't buzz 🥲 Please try once more in a moment.");
+      setError("Ayyo, en phone buzz aagala 🥲 Konja neram kazhichu innoru vaati try pannu.");
     }
   };
 
@@ -57,13 +57,23 @@ export default function GiftPage() {
             transition={{ duration: 0.5 }}
             className="w-full max-w-xl text-center"
           >
+            {onBack && (
+              <div className="mb-6 flex justify-center">
+                <button
+                  onClick={onBack}
+                  className="rounded-full border border-rose-soft bg-white/70 px-6 py-2 text-sm font-semibold text-rose-deep shadow-soft backdrop-blur transition hover:bg-white"
+                >
+                  ← Pinnadi
+                </button>
+              </div>
+            )}
             <motion.h2
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
               className="font-display text-3xl font-bold text-rose-deep sm:text-4xl"
             >
-              Okay Birthday Girl... 🎀
+              Sari Birthday Girl... 🎀
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
@@ -71,7 +81,7 @@ export default function GiftPage() {
               transition={{ delay: 0.35, duration: 0.5 }}
               className="mt-3 text-lg font-medium text-rose sm:text-xl"
             >
-              Now tell me... What gift do you want? 👀🎁
+              Ippo sollu... Enna gift venum unakku? 👀🎁
             </motion.p>
 
             <div
@@ -140,10 +150,10 @@ function SuccessView({ note }: { note: string | null }) {
         🎁
       </motion.div>
       <h2 className="font-display text-3xl font-bold text-gradient sm:text-4xl">
-        Gift request received successfully! 🎁❤️
+        Gift request vandhuduchu! 🎁❤️
       </h2>
       <p className="mt-4 text-lg font-medium text-rose-deep sm:text-xl">
-        Now let's see if I can get it for you 👀
+        Ipo paapom naan adha vaangi tharenaanu 👀
       </p>
       {note && <p className="mt-3 text-sm text-rose">{note}</p>}
       <p className="mt-6 text-2xl">🥳🎂✨</p>
@@ -162,10 +172,10 @@ function CaughtView() {
     >
       <div className="mb-4 text-7xl">😭</div>
       <h2 className="font-display text-3xl font-bold text-rose-deep sm:text-4xl">
-        Fineee 😭
+        Seri po... Fineee 😭
       </h2>
       <p className="mt-4 text-lg font-medium text-rose sm:text-xl">
-        But I'm still getting you something ❤️
+        Aana naan unakku ethaavadhu vaangi tharuven ❤️
       </p>
     </motion.div>
   );
