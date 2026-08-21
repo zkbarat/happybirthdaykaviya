@@ -27,7 +27,7 @@ export const config = {
   // 📮 GitHub Pages / no-server mode: paste your Formspree form endpoint here
   // (looks like "https://formspree.io/f/abcdwxyz"). When set, the gift request
   // is emailed to you via Formspree and NO backend is needed.
-  formspreeEndpoint: "",
+  formspreeEndpoint: "https://formspree.io/f/xvkpldyo",
 
   // ---- Home page ----
   homeKicker: "unakaga oru chinna surprise 🎁",
