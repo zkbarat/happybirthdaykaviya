@@ -24,12 +24,33 @@ export default function GiftPage({ onBack }: { onBack?: () => void }) {
     }
     setError(null);
     setStatus("sending");
-    try {
-      const res = await sendGiftRequest(gift.trim());
+
+    // Fire the request, but don't make her stare at a spinner on a slow
+    // network — reveal the success screen fast. We still show an error if the
+    // request fails quickly (within the short grace window).
+    const send = sendGiftRequest(gift.trim());
+    send.catch(() => {}); // keep any late rejection from going unhandled
+
+    const reveal = () => {
       bigPop();
       setStatus("success");
-      if (res.channel && res.channel !== "whatsapp") {
-        setNote(`(Delivered to me via ${res.channel} 💌)`);
+    };
+
+    const grace = new Promise<"grace">((resolve) =>
+      setTimeout(() => resolve("grace"), 700)
+    );
+
+    try {
+      const winner = await Promise.race([
+        send.then(() => "ok" as const),
+        grace,
+      ]);
+      reveal();
+      if (winner === "ok") {
+        const res = await send;
+        if (res.channel && res.channel !== "whatsapp") {
+          setNote(`(Delivered to me via ${res.channel} 💌)`);
+        }
       }
     } catch {
       setStatus("idle");

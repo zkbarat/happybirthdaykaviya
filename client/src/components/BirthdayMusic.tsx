@@ -24,19 +24,15 @@ const MELODY: [number, number][] = [
 const BEAT = 0.5; // seconds per beat
 const LOOP_GAP = 1.2; // seconds of silence between loops
 
-type Props = { name: string };
-
 /**
- * Plays a soft, synthesized "Happy Birthday" tune (no audio file needed) and
- * speaks "Happy Birthday <name>!" the first time it starts. Audio can't
- * autoplay on mobile, so it kicks off on the first tap anywhere and can be
- * toggled with the floating button.
+ * Plays a soft, synthesized "Happy Birthday" tune (no audio file needed).
+ * Audio can't autoplay on mobile, so it kicks off on the first tap anywhere
+ * and can be toggled with the floating button.
  */
-export default function BirthdayMusic({ name }: Props) {
+export default function BirthdayMusic() {
   const ctxRef = useRef<AudioContext | null>(null);
   const timersRef = useRef<number[]>([]);
   const playingRef = useRef(false);
-  const spokenRef = useRef(false);
   const [playing, setPlaying] = useState(false);
 
   const clearTimers = () => {
@@ -81,21 +77,6 @@ export default function BirthdayMusic({ name }: Props) {
     timersRef.current.push(id);
   }, [playNote]);
 
-  const speakName = useCallback(() => {
-    if (spokenRef.current) return;
-    spokenRef.current = true;
-    try {
-      const synth = window.speechSynthesis;
-      if (!synth) return;
-      const u = new SpeechSynthesisUtterance(`Happy Birthday ${name}!`);
-      u.rate = 0.9;
-      u.pitch = 1.2;
-      synth.speak(u);
-    } catch {
-      // speechSynthesis unsupported — no problem, the tune still plays.
-    }
-  }, [name]);
-
   const start = useCallback(async () => {
     if (playingRef.current) return;
     try {
@@ -109,23 +90,17 @@ export default function BirthdayMusic({ name }: Props) {
       await ctxRef.current.resume();
       playingRef.current = true;
       setPlaying(true);
-      speakName();
       scheduleLoop();
     } catch {
       playingRef.current = false;
       setPlaying(false);
     }
-  }, [scheduleLoop, speakName]);
+  }, [scheduleLoop]);
 
   const stop = useCallback(() => {
     playingRef.current = false;
     setPlaying(false);
     clearTimers();
-    try {
-      window.speechSynthesis?.cancel();
-    } catch {
-      // ignore
-    }
     ctxRef.current?.suspend().catch(() => {});
   }, []);
 

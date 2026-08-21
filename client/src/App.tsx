@@ -56,7 +56,7 @@ export default function App() {
       {config.musicFile ? (
         <MusicButton src={`${import.meta.env.BASE_URL}${config.musicFile}`} />
       ) : config.birthdayMusic ? (
-        <BirthdayMusic name={config.bestFriendName} />
+        <BirthdayMusic />
       ) : null}
 
       <div className="relative z-10">
