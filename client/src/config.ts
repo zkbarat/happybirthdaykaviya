@@ -16,6 +16,13 @@ export const config = {
   // Leave as "/api/gift-request" — the frontend proxies to your backend.
   giftApiEndpoint: "/api/gift-request",
 
+  // 📮 GitHub Pages / no-server mode: paste your Formspree form endpoint here
+  // (looks like "https://formspree.io/f/abcdwxyz"). When set, the gift request
+  // is emailed to you via Formspree and NO backend is needed.
+  // Get one free at https://formspree.io (see README → "Host on GitHub Pages").
+  // Leave "" to use the Node backend (giftApiEndpoint) instead.
+  formspreeEndpoint: "",
+
   // Birthday wishes shown one-by-one on Page 1.
   wishes: [
     "Happy Birthday to one of the most special people in my life ❤️",

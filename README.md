@@ -183,6 +183,22 @@ Manual Render settings (if not using the blueprint):
 
 The same commands work on **Railway**, **Fly.io**, or any Node host.
 
+### Free & always-on: GitHub Pages (no server) 🐙
+
+GitHub Pages only serves static files, so instead of the Node backend the gift
+request is emailed to you via **Formspree** (free).
+
+1. Create a form at <https://formspree.io> and copy its endpoint
+   (looks like `https://formspree.io/f/abcdwxyz`).
+2. Paste it into `client/src/config.ts` → `formspreeEndpoint`.
+3. Push to GitHub. The included workflow (`.github/workflows/deploy-pages.yml`)
+   builds the site and publishes it automatically.
+4. In your repo → **Settings → Pages**, set **Source: GitHub Actions** (one time).
+5. Your site goes live at `https://<username>.github.io/happybirthdaykaviya/`.
+
+> The Vite `base` in `vite.config.ts` is set to `/happybirthdaykaviya/` to match
+> the repo name. If you rename the repo, update that value too.
+
 ### Alternative: split deploy (frontend on Vercel/Netlify, backend on Render)
 
 1. Deploy `server/` to Render/Railway. Set `CLIENT_ORIGIN` to your frontend URL and add your notification secrets.

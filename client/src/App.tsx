@@ -26,7 +26,9 @@ export default function App() {
       <FloatingHearts />
       <Balloons />
 
-      {config.musicFile && <MusicButton src={`/${config.musicFile}`} />}
+      {config.musicFile && (
+        <MusicButton src={`${import.meta.env.BASE_URL}${config.musicFile}`} />
+      )}
 
       <div className="relative z-10">
         <AnimatePresence mode="wait">
