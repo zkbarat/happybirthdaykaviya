@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  /* Stop iOS/Android from auto-inflating font sizes in landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Quicksand", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  /* Prevent the pull-to-refresh / overscroll glow on mobile */
+  overscroll-behavior: none;
+  /* Remove the grey flash when tapping on iOS/Android */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Kill the 300ms tap delay + double-tap zoom on interactive elements */
+button,
+a,
+textarea,
+input {
+  touch-action: manipulation;
+}
+
+/*
+ * Full-height that actually works everywhere:
+ * - Older browsers use 100vh
+ * - Modern browsers (iOS Safari 15.4+, Chrome) override with 100dvh,
+ *   which excludes the mobile address bar so nothing gets cut off.
+ * - --app-height is a JS-driven fallback for older iOS where dvh is missing.
+ */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: var(--app-height, 100vh);
+  min-height: 100dvh;
+}
+
+/* Respect the iPhone notch / home indicator */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.safe-x {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Nice soft animated gradient used behind pages */
+.bg-birthday {
+  background: linear-gradient(
+    130deg,
+    #fff6fb 0%,
+    #ffe4ef 25%,
+    #ffd1e3 50%,
+    #f3e6ff 75%,
+    #fff6fb 100%
+  );
+  background-size: 300% 300%;
+}
+
+/* Gradient text helper */
+.text-gradient {
+  background: linear-gradient(90deg, #ff5fa2, #ff8ec1, #c98bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbars but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

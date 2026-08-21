@@ -1,0 +1,32 @@
+# One-click deploy to Render (https://render.com) as a SINGLE web service
+# that builds the frontend and serves it from the Node backend.
+#
+# After creating the service, add your notification secrets (WhatsApp /
+# Telegram / Email) in the Render dashboard → Environment.
+services:
+  - type: web
+    name: birthday-website
+    runtime: node
+    plan: free
+    buildCommand: npm run build && npm --prefix server install
+    startCommand: npm --prefix server start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # Fill these in the Render dashboard (do NOT commit real secrets):
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: WHATSAPP_ACCESS_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: MY_WHATSAPP_NUMBER
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_TO
+        sync: false
