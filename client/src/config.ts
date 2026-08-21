@@ -5,7 +5,7 @@
 
 export const config = {
   // Her name — shows up in the big heading: "Happy Birthday, <NAME> ❤️"
-  bestFriendName: "Bestie",
+  bestFriendName: "Kaviya",
 
   // Optional background music.
   // Put an .mp3 file in client/public/ and set the filename here,
